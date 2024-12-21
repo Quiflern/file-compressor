@@ -32,7 +32,7 @@ The utility allows you to select either algorithm for both compression and decom
 - **Compression Level:**
   - Fast, Balanced, Max (affects the trade off between speed & compression ratio in RLE & Hybrid mode)
 
-## Repository Structure
+## Project Structure
 
 ```
 file-compressor/
@@ -139,60 +139,60 @@ Now that you have built the executable, you can run it to compress or decompress
 - **`-encrypt`:** Encrypt the compressed data using a password.
 - **`-decrypt`:** Decrypt the encrypted file using a password.
 - **`-password password`:** The password for encryption or decryption.
-- `input_file`: The path to the file you want to compress, decompress or benchmark.
-- `output_file`: The desired path for the output file.
+- **`input_file`**: The path to the file you want to compress, decompress or benchmark.
+- **`output_file`**: The desired path for the output file.
 
 #### Examples
 
-1. **Compress a file using RLE (balanced level):**
+1. ***Compress a file using RLE (balanced level):***
 
    ```bash
    ./compressor -c -a rle -l balanced input.txt output.rle
    ```
 
-2. **Decompress an RLE compressed file:**
+2. ***Decompress an RLE compressed file:***
 
    ```bash
    ./compressor -d -a rle output.rle decompressed.txt
    ```
 
-3. **Compress a file using Huffman (max level):**
+3. ***Compress a file using Huffman (max level):***
 
    ```bash
    ./compressor -c -a huffman -l max input.txt output.huff
    ```
 
-4. **Decompress a Huffman file:**
+4. ***Decompress a Huffman file:***
 
    ```bash
    ./compressor -d -a huffman output.huff decompressed.txt
    ```
 
-5. **Compress a directory using hybrid algorithm (fast level):**
+5. ***Compress a directory using hybrid algorithm (fast level):***
 
    ```bash
    ./compressor -c -a hybrid -l fast -dir my_directory output.archive
    ```
 
-6. **Compress multiple files using RLE:**
+6. ***Compress multiple files using RLE:***
 
    ```bash
    ./compressor -c -a rle -files file1.txt file2.txt file3.txt output.archive
    ```
 
-7. **Encrypt a compressed file:**
+7. ***Encrypt a compressed file:***
 
    ```bash
-   ./compressor -c -a rle -encrypt -password "mysecretpassword" input.txt output.rle.encrypted
+   ./compressor -c -a rle -encrypt -password "yourpassword" input.txt output.rle.encrypted
    ```
 
-8. **Decrypt and decompress a file:**
+8. ***Decrypt and decompress a file:***
 
    ```bash
-   ./compressor -d -a rle -decrypt -password "mysecretpassword" output.rle.encrypted decompressed.txt
+   ./compressor -d -a rle -decrypt -password "yourpassword" output.rle.encrypted decompressed.txt
    ```
 
-9. **Benchmark RLE compression on a file:**
+9. ***Benchmark RLE compression on a file:***
 
    ```bash
    ./compressor -b -a rle input.txt
@@ -210,9 +210,9 @@ Run-Length Encoding is most effective for data with long sequences of repeating 
 
 **Implementation Files:**
 
-- `rle/rle.h`: Declares the RLE compression and decompression functions (`rle_compress` and `rle_decompress`).
-- `rle/rle_compress.c`: Contains the implementation of RLE compression logic.
-- `rle/rle_decompress.c`: Contains the implementation of RLE decompression logic.
+- **`rle/rle.h`**: Declares the RLE compression and decompression functions (`rle_compress` and `rle_decompress`).
+- **`rle/rle_compress.c`**: Contains the implementation of RLE compression logic.
+- **`rle/rle_decompress.c`**: Contains the implementation of RLE decompression logic.
 
 ### Huffman Coding
 
@@ -230,9 +230,9 @@ Huffman coding is generally more effective than RLE for a wider range of data, a
 
 **Implementation Files:**
 
-- `huffman/huffman.h`: Declares Huffman coding-related functions and data structures (e.g., `HuffmanNode`, `huffman_compress`, `huffman_decompress`).
-- `huffman/huffman_compress.c`: Implements Huffman compression, including frequency analysis, Huffman tree construction, code generation, and encoding.
-- `huffman/huffman_decompress.c`: Implements Huffman decompression, including reading the frequency table, rebuilding the Huffman tree, and decoding.
+- **`huffman/huffman.h`**: Declares Huffman coding-related functions and data structures (e.g., `HuffmanNode`, `huffman_compress`, `huffman_decompress`).
+- **`huffman/huffman_compress.c`**: Implements Huffman compression, including frequency analysis, Huffman tree construction, code generation, and encoding.
+- **`huffman/huffman_decompress.c`**: Implements Huffman decompression, including reading the frequency table, rebuilding the Huffman tree, and decoding.
 
 ### Hybrid Algorithm
 
@@ -244,7 +244,7 @@ The hybrid algorithm combines the strengths of both RLE and Huffman coding to po
 
 **Implementation Files:**
 
-- `main.c`: The hybrid compression logic is primarily implemented within the `main` function, utilizing the RLE and Huffman compression functions as needed.
+- **`main.c`**: The hybrid compression logic is primarily implemented within the `main` function, utilizing the RLE and Huffman compression functions as needed.
 
 ### Progress Tracking
 
@@ -277,24 +277,24 @@ The compressor utility supports file encryption using the AES-256-CBC (Advanced 
 
 **Usage:**
 
-- **Encryption:** To encrypt a compressed file, use the `-encrypt` flag along with a password provided via the `-password` flag. The encryption is performed after compression.
+- **Encryption:** To encrypt a compressed file, use the `-encrypt` flag along with a password provided via the `-password` flag. The encryption is performed after compression. 
+***Usage example:***
+	```bash
+	./compressor -c -a rle -encrypt -password "yourpassword" input.txt output.rle.encrypted
+	```
 - **Decryption:** To decrypt an encrypted file, use the `-decrypt` flag along with the correct password. The decryption is performed before decompression.
-
-  ```bash
-  ./compressor -c -a rle -encrypt -password "mysecretpassword" input.txt output.rle.encrypted
-
-  ./compressor -d -a rle -decrypt -password "mysecretpassword" output.rle.encrypted decompressed.txt
-
-  ```
-
+***Usage example:***
+	``` bash
+	./compressor -d -a rle -decrypt -password "yourpassword" output.rle.encrypted decompressed.txt
+	```
 **Security Considerations:**
 
 - **Password Strength:** It is crucial to use a strong and unique password for encryption.
 - **OpenSSL Dependency:** The encryption feature relies on the OpenSSL library, which must be installed on your system.
 
-### Benchmarking
+### Benchmark
 
-The benchmarking feature in the compressor utility is designed to provide insights into the performance of the compression and decompression processes. It allows you to measure and evaluate key performance metrics, such as:
+The benchmark feature in the compressor utility is designed to provide insights into the performance of the compression and decompression processes. It allows you to measure and evaluate key performance metrics, such as:
 
 - **Compression Time:** The time taken to compress a file using a specified algorithm and compression level.
 - **Decompression Time:** The time taken to decompress a previously compressed file.
@@ -303,7 +303,7 @@ The benchmarking feature in the compressor utility is designed to provide insigh
 
 **Implementation Details:**
 
-- The `benchmark_compression` function, implemented in `benchmark/benchmark.c`, conducts the benchmark tests.
+- The **`benchmark_compression`** function, implemented in **`benchmark/benchmark.c`**, conducts the benchmark tests.
 - It uses standard C library functions such as `clock()` for time measurements and system-specific functions like `getrusage` (common in Unix-like systems) to obtain CPU and memory usage information.
 - The benchmarking process involves compressing an input file using the specified algorithm and compression level, measuring the time and resources consumed during the operation, decompressing the generated compressed file back to its original form, and again measuring the time taken.
 - The results are stored in a `CompressionBenchmark` struct and printed to the console, providing a clear overview of the performance characteristics.
@@ -311,9 +311,9 @@ The benchmarking feature in the compressor utility is designed to provide insigh
 **Usage:**
 To use the benchmarking feature, you can run the compressor with the -b flag, specifying the algorithm to be benchmarked and the input file to be used for testing. For example:
 
-    ```bash
-    ./compressor -b -a rle input.txt
-    ```
+```bash
+./compressor -b -a rle input.txt
+```
 
 This command will benchmark the RLE compression algorithm using input.txt as the test file and output the performance metrics to the console.
 
@@ -324,7 +324,7 @@ This command will benchmark the RLE compression algorithm using input.txt as the
 
 ### Bit Manipulation
 
-Both RLE and, in particular, Huffman coding often require working with data at the bit level. The `utils/bit_manipulation.h` and `utils/bit_manipulation.c` files provide a set of utility functions for bit-level operations, including:
+Both RLE and, in particular, Huffman coding often require working with data at the bit level. The **`utils/bit_manipulation.h`** and **`utils/bit_manipulation.c`** files provide a set of utility functions for bit-level operations, including:
 
 - **Setting/clearing bits:** `set_bit` and `clear_bit`.
 - **Getting bit values:** `get_bit`.
@@ -335,7 +335,7 @@ These functions help to handle the bit-stream manipulations required for these c
 
 ## Error Handling
 
-The `compressor` utility has built-in error handling to address various scenarios gracefully. These include:
+The **`compressor`** utility has built-in error handling to address various scenarios gracefully. These include:
 
 - **Invalid command-line arguments:** Checks for incorrect usage or missing parameters.
 - **Invalid compression mode/algorithm:** Ensures that valid compression modes (-c or -d) and algorithm names (rle or huffman) are provided.
