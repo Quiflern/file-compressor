@@ -55,8 +55,8 @@ void usage(char *program_name) {
     fprintf(stderr, "                      Default: rle\n");
     fprintf(stderr, "  -l                  : Compression level. Specify the compression level (fast, balanced, max).\n");
     fprintf(stderr, "                      Default: balanced\n");
-    fprintf(stderr, "  -dir <directory>    : Compress a directory. Use with -c.\n");
-    fprintf(stderr, "  -files <files...>   : Compress multiple files. Use with -c.\n");
+    fprintf(stderr, "  -q <directory>    : Compress a directory. Use with -c.\n");
+    fprintf(stderr, "  -f <files...>   : Compress multiple files. Use with -c.\n");
     fprintf(stderr, "  -encrypt            : Encrypt the compressed file.\n");
     fprintf(stderr, "  -decrypt            : Decrypt the compressed file.\n");
     fprintf(stderr, "  -password <password>: Password. Provide a password for encryption or decryption.\n");
@@ -170,8 +170,8 @@ int main(int argc, char *argv[]) {
         {"b", no_argument, NULL, 'b'},
         {"a", required_argument, NULL, 'a'},
         {"l", required_argument, NULL, 'l'},
-        {"dir", required_argument, NULL, '1'},
-        {"files", required_argument, NULL, '2'},
+        {"dir", required_argument, NULL, 'q'},
+        {"files", required_argument, NULL, 'f'},
         {"encrypt", no_argument, &encrypt, 1},
         {"decrypt", no_argument, &decrypt, 1},
         {"password", required_argument, NULL, 'p'},

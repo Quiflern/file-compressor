@@ -1,4 +1,5 @@
 # File Compressor
+
 ![compressor](https://github.com/user-attachments/assets/1c1a896c-63fe-4605-b055-75ef316aabd8)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -134,8 +135,8 @@ Now that you have built the executable, you can run it to compress or decompress
   - `balanced`: Balances speed and compression ratio.
   - `max`: Achieves maximum compression (may be slower).
   - **Default:** `balanced` is used if the `-l` flag is omitted.
-- **`-dir directory`:** Compresses the specified directory (using compression mode).
-- **`-files file1 file2 ...`:** Compresses multiple files into a single archive (using compression mode).
+- **`-q directory`:** Compresses the specified directory (using compression mode).
+- **`-f file1 file2 ...`:** Compresses multiple files into a single archive (using compression mode).
 - **`-encrypt`:** Encrypt the compressed data using a password.
 - **`-decrypt`:** Decrypt the encrypted file using a password.
 - **`-password password`:** The password for encryption or decryption.
@@ -144,55 +145,55 @@ Now that you have built the executable, you can run it to compress or decompress
 
 #### Examples
 
-1. ***Compress a file using RLE (balanced level):***
+1. **_Compress a file using RLE (balanced level):_**
 
    ```bash
    ./compressor -c -a rle -l balanced input.txt output.rle
    ```
 
-2. ***Decompress an RLE compressed file:***
+2. **_Decompress an RLE compressed file:_**
 
    ```bash
    ./compressor -d -a rle output.rle decompressed.txt
    ```
 
-3. ***Compress a file using Huffman (max level):***
+3. **_Compress a file using Huffman (max level):_**
 
    ```bash
    ./compressor -c -a huffman -l max input.txt output.huff
    ```
 
-4. ***Decompress a Huffman file:***
+4. **_Decompress a Huffman file:_**
 
    ```bash
    ./compressor -d -a huffman output.huff decompressed.txt
    ```
 
-5. ***Compress a directory using hybrid algorithm (fast level):***
+5. **_Compress a directory using hybrid algorithm (fast level):_**
 
    ```bash
-   ./compressor -c -a hybrid -l fast -dir my_directory output.archive
+   ./compressor -c -a hybrid -l fast -q my_directory output.archive
    ```
 
-6. ***Compress multiple files using RLE:***
+6. **_Compress multiple files using RLE:_**
 
    ```bash
-   ./compressor -c -a rle -files file1.txt file2.txt file3.txt output.archive
+   ./compressor -c -a rle -f file1.txt file2.txt file3.txt output.archive
    ```
 
-7. ***Encrypt a compressed file:***
+7. **_Encrypt a compressed file:_**
 
    ```bash
    ./compressor -c -a rle -encrypt -password "yourpassword" input.txt output.rle.encrypted
    ```
 
-8. ***Decrypt and decompress a file:***
+8. **_Decrypt and decompress a file:_**
 
    ```bash
    ./compressor -d -a rle -decrypt -password "yourpassword" output.rle.encrypted decompressed.txt
    ```
 
-9. ***Benchmark RLE compression on a file:***
+9. **_Benchmark RLE compression on a file:_**
 
    ```bash
    ./compressor -b -a rle input.txt
@@ -277,17 +278,16 @@ The compressor utility supports file encryption using the AES-256-CBC (Advanced 
 
 **Usage:**
 
-- **Encryption:** To encrypt a compressed file, use the `-encrypt` flag along with a password provided via the `-password` flag. The encryption is performed after compression. 
-***Usage example:***
-	```bash
-	./compressor -c -a rle -encrypt -password "yourpassword" input.txt output.rle.encrypted
-	```
+- **Encryption:** To encrypt a compressed file, use the `-encrypt` flag along with a password provided via the `-password` flag. The encryption is performed after compression.
+  **_Usage example:_**
+  `bash
+./compressor -c -a rle -encrypt -password "yourpassword" input.txt output.rle.encrypted
+`
 - **Decryption:** To decrypt an encrypted file, use the `-decrypt` flag along with the correct password. The decryption is performed before decompression.
-***Usage example:***
-	``` bash
-	./compressor -d -a rle -decrypt -password "yourpassword" output.rle.encrypted decompressed.txt
-	```
-**Security Considerations:**
+  **_Usage example:_**
+  `bash
+./compressor -d -a rle -decrypt -password "yourpassword" output.rle.encrypted decompressed.txt`
+  **Security Considerations:**
 
 - **Password Strength:** It is crucial to use a strong and unique password for encryption.
 - **OpenSSL Dependency:** The encryption feature relies on the OpenSSL library, which must be installed on your system.
