@@ -47,7 +47,7 @@ int copy_file(FILE *source, FILE *destination) {
  * @param program_name The name of the executable.
  */
 void usage(char *program_name) {
-    fprintf(stderr, "Usage: %s [-c|-d|-b] [-a rle|huffman|hybrid] [-l fast|balanced|max] [-dir directory] [-files file1 file2 ...] [-encrypt|-decrypt] [-password password] input_file output_file\n", program_name);
+    fprintf(stderr, "Usage: %s [-c|-d|-b] [-a rle|huffman|hybrid] [-l fast|balanced|max] [-q directory] [-f file1 file2 ...] [-encrypt|-decrypt] [-password password] input_file output_file\n", program_name);
     fprintf(stderr, "  -c                  : Compress. Compress an input file or directory.\n");
     fprintf(stderr, "  -d                  : Decompress. Decompress an input file.\n");
     fprintf(stderr, "  -b                  : Benchmark. Benchmark compression/decompression performance.\n");
