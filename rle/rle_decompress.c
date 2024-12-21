@@ -15,6 +15,7 @@ int rle_decompress(FILE *input_file, FILE *output_file) {
 
     uint8_t count, byte;
     uint8_t buffer[BUFFER_SIZE];
+    (void)buffer;
 
 
     while (fread(&count, 1, 1, input_file) == 1) {
