@@ -1,4 +1,5 @@
 # File Compressor
+![compressor](https://github.com/user-attachments/assets/1c1a896c-63fe-4605-b055-75ef316aabd8)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
